@@ -1,0 +1,8 @@
+UNKNOWN_MSG=Je suis perdue...
+OPENING_MSG=Je m'ouvre
+OPENING_TIMEOUT_MSG=Ouverture interrompue !
+OPENED_MSG=Je suis ouverte
+CLOSING_MSG=Je me ferme
+CLOSING_TIMEOUT_MSG=Fermeture interrompue !
+CLOSED_MSG=Je suis fermée
+FORGOTTEN_OPENED_DOOR_TIMEOUT_MSG=Je n'ai pas été fermée depuis plus de 15 minutes !
