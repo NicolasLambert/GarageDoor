@@ -11,7 +11,7 @@ IOManager::IOManager() :
 		//----------------------------------------------------------------------------------------------------
 		// Inputs
 		m_button(new Button(54)),	//A0
-		m_bottomHallSensor(new Button(55)),	//A1
+		m_bottomHallSensor(new Button(55, 300)),	//A1
 		m_topHallSensor(new Button(56)),	//A2
 		m_photoElecBeam(new Button(57)),	//A3
 		//----------------------------------------------------------------------------------------------------

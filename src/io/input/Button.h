@@ -10,9 +10,11 @@
 
 #include "DigitalInput.h"
 
+#define DEFAULT_DEBOUNCE_DELAY 50
+
 class Button: public DigitalInput {
 public:
-	Button(int const pin);
+	Button(int const pin, unsigned int debounceDelay = DEFAULT_DEBOUNCE_DELAY);
 };
 
 #endif /* BUTTON_H_ */

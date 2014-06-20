@@ -7,8 +7,8 @@
 
 #include "DigitalInput.h"
 
-DigitalInput::DigitalInput(int const pin, bool const reversed) :
-		DigitalIO(pin, reversed), m_listener(0) {
+DigitalInput::DigitalInput(int const pin, bool const reversed, unsigned int debounceDelay) :
+		DigitalIO(pin, reversed), m_listener(0), m_debounceDelay(debounceDelay) {
 	pinMode(m_pin, INPUT);
 	m_lastChangeTime = millis();
 	m_currentState = m_lastState = getState();
@@ -33,7 +33,7 @@ void DigitalInput::update(unsigned long currentTime) {
 		m_lastChangeTime = currentTime;
 	}
 
-	if ((newState != m_currentState) && ((currentTime - m_lastChangeTime) > DEBOUNCE_DELAY)) {
+	if ((newState != m_currentState) && ((currentTime - m_lastChangeTime) > m_debounceDelay)) {
 		// whatever the reading is at, it's been there for longer
 		// than the debounce delay, so take it as the actual current state:
 		bool oldState = m_currentState;
