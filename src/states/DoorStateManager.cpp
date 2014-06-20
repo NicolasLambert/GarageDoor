@@ -28,15 +28,15 @@ DoorStateManager::DoorStateManager() :
 
 {
 	// Set listeners
-	IOManager::getInstance()->m_button->setListener(&DoorStateManager::buttonPressed);
-	IOManager::getInstance()->m_bottomHallSensor->setListener(&DoorStateManager::bottomTouched);
-	IOManager::getInstance()->m_topHallSensor->setListener(&DoorStateManager::topTouched);
+	IOManager::getInstance()->m_actionDoorButton->setListener(&DoorStateManager::buttonPressed);
+	IOManager::getInstance()->m_bottomLimitSensor->setListener(&DoorStateManager::bottomTouched);
+	IOManager::getInstance()->m_topLimitSensor->setListener(&DoorStateManager::topTouched);
 	IOManager::getInstance()->m_photoElecBeam->setListener(&DoorStateManager::photoElecCut);
 
 	// Compute initial state
-	if (IOManager::getInstance()->m_bottomHallSensor->getState()) {
+	if (IOManager::getInstance()->m_bottomLimitSensor->getState()) {
 		stateChanged(m_closedState);
-	} else if (IOManager::getInstance()->m_topHallSensor->getState()) {
+	} else if (IOManager::getInstance()->m_topLimitSensor->getState()) {
 		stateChanged(m_openedState);
 	} else {
 		stateChanged(m_unknownState);
@@ -45,7 +45,7 @@ DoorStateManager::DoorStateManager() :
 
 void DoorStateManager::buttonPressed(bool const oldState, bool const newState) {
 	if (newState) {
-		IOManager::getInstance()->m_relay->toggleFor();
+		IOManager::getInstance()->m_actionDoorCmd->toggleFor();
 	}
 }
 
@@ -67,7 +67,7 @@ void DoorStateManager::topTouched(bool const oldState, bool const newState) {
 
 void DoorStateManager::photoElecCut(bool const oldState, bool const newState) {
 	if (getInstance()->m_currentState == getInstance()->m_openedState) {
-		IOManager::getInstance()->m_yellow->setState(
+		IOManager::getInstance()->m_yellowLed->setState(
 				IOManager::getInstance()->m_photoElecBeamPower->getState() && newState);
 	}
 }

@@ -27,20 +27,20 @@ public:
 
 	//----------------------------------------------------------------------------------------------------
 	// Inputs
-	Button * m_button;
-	Button * m_bottomHallSensor;
-	Button * m_topHallSensor;
+	Button * m_actionDoorButton;
+	Button * m_bottomLimitSensor;
+	Button * m_topLimitSensor;
 	Button * m_photoElecBeam;
 	CredentialsFile * m_credentialsFile;
 	SentencesFile * m_sentencesFile;
 
 	//----------------------------------------------------------------------------------------------------
 	// Outputs
-	Relay * m_relay;
+	Relay * m_actionDoorCmd;
 	Relay * m_photoElecBeamPower;
-	Led * m_red;
-	Led * m_yellow;
-	Led * m_green;
+	Led * m_redLed;
+	Led * m_yellowLed;
+	Led * m_greenLed;
 	DoorTwitter * m_doorTwitter;
 };
 

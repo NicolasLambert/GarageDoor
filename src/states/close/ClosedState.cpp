@@ -13,9 +13,9 @@ ClosedState::ClosedState(unsigned int const id) :
 
 void ClosedState::activate(unsigned long & notClosedDoorTimer, unsigned long & movingDoorTimer,
 		bool& isForgottenOpenedDoor) {
-	IOManager::getInstance()->m_red->on();
-	IOManager::getInstance()->m_yellow->off();
-	IOManager::getInstance()->m_green->off();
+	IOManager::getInstance()->m_redLed->on();
+	IOManager::getInstance()->m_yellowLed->off();
+	IOManager::getInstance()->m_greenLed->off();
 	IOManager::getInstance()->m_photoElecBeamPower->off();
 
 	notClosedDoorTimer = 0UL;

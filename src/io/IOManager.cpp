@@ -10,22 +10,22 @@
 IOManager::IOManager() :
 		//----------------------------------------------------------------------------------------------------
 		// Inputs
-		m_button(new Button(54)),	//A0
-		m_bottomHallSensor(new Button(55, 300)),	//A1
-		m_topHallSensor(new Button(56)),	//A2
+		m_actionDoorButton(new Button(54)),	//A0
+		m_bottomLimitSensor(new Button(55, 300)),	//A1
+		m_topLimitSensor(new Button(56)),	//A2
 		m_photoElecBeam(new Button(57)),	//A3
 		//----------------------------------------------------------------------------------------------------
 		// Outputs
-		m_relay(new Relay(7)),
+		m_actionDoorCmd(new Relay(7)),
 		m_photoElecBeamPower(new Relay(8)),
-		m_red(new Led(3)),
-		m_yellow(new Led(5)),
-		m_green(new Led(6))
+		m_redLed(new Led(3)),
+		m_yellowLed(new Led(5)),
+		m_greenLed(new Led(6))
 {
 	// Start setup
-	m_red->on();
-	m_yellow->on();
-	m_green->on();
+	m_redLed->on();
+	m_yellowLed->on();
+	m_greenLed->on();
 	delay(500);
 
 	// disable w5100 SPI while setting up SD
@@ -33,23 +33,23 @@ IOManager::IOManager() :
 	digitalWrite(W5100_SPI, HIGH);
 
 	// initialize the SD card
-	m_red->off();
+	m_redLed->off();
 	while (!SD.begin(SD_PIN)) {
-		m_red->on();
+		m_redLed->on();
 		delay(500);
-		m_red->off();
+		m_redLed->off();
 	};
 
 	m_credentialsFile = new CredentialsFile();
 	m_sentencesFile = new SentencesFile();
 
 	// Configure Ethernet Connection (w5100)
-	m_yellow->off();
+	m_yellowLed->off();
 	uint8_t mac[6] = { 0x90, 0xA2, 0xDA, 0x0D, 0xFA, 0x43 };
 	while (Ethernet.begin(mac) == 0) {
-		m_yellow->on();
+		m_yellowLed->on();
 		delay(500);
-		m_yellow->off();
+		m_yellowLed->off();
 	};
 
 	// Let the Ethernet shield initialize
@@ -58,18 +58,18 @@ IOManager::IOManager() :
 
 	m_doorTwitter = new DoorTwitter(m_credentialsFile->m_twitterToken);
 
-	m_green->off();
+	m_greenLed->off();
 }
 
 void IOManager::update(unsigned long currentTime) {
-	m_button->update(currentTime);
-	m_bottomHallSensor->update(currentTime);
-	m_topHallSensor->update(currentTime);
+	m_actionDoorButton->update(currentTime);
+	m_bottomLimitSensor->update(currentTime);
+	m_topLimitSensor->update(currentTime);
 	m_photoElecBeam->update(currentTime);
-	m_relay->update(currentTime);
+	m_actionDoorCmd->update(currentTime);
 	m_photoElecBeamPower->update(currentTime);
-	m_red->update(currentTime);
-	m_yellow->update(currentTime);
-	m_green->update(currentTime);
+	m_redLed->update(currentTime);
+	m_yellowLed->update(currentTime);
+	m_greenLed->update(currentTime);
 	m_doorTwitter->update(currentTime);
 }

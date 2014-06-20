@@ -73,7 +73,7 @@ void WebManager::pushButtonCmd(WebServer& server, WebServer::ConnectionType type
 #endif
 	if (getInstance()->m_webserver->checkCredentials(IOManager::getInstance()->m_credentialsFile->m_authCredentials)) {
 		if (type == WebServer::POST) {
-			IOManager::getInstance()->m_relay->toggleFor();
+			IOManager::getInstance()->m_actionDoorCmd->toggleFor();
 		}
 
 		/* for a GET or HEAD, send the standard "it's all OK headers" */

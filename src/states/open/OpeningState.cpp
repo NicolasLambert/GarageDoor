@@ -13,13 +13,13 @@ OpeningState::OpeningState(unsigned int const id) :
 
 void OpeningState::activate(unsigned long & notClosedDoorTimer, unsigned long & movingDoorTimer,
 		bool& isForgottenOpenedDoor) {
-	IOManager::getInstance()->m_red->off();
-	IOManager::getInstance()->m_yellow->on();
-	IOManager::getInstance()->m_green->off();
+	IOManager::getInstance()->m_redLed->off();
+	IOManager::getInstance()->m_yellowLed->on();
+	IOManager::getInstance()->m_greenLed->off();
 	IOManager::getInstance()->m_photoElecBeamPower->off();
 
-	IOManager::getInstance()->m_yellow->blink();
-	IOManager::getInstance()->m_green->blink();
+	IOManager::getInstance()->m_yellowLed->blink();
+	IOManager::getInstance()->m_greenLed->blink();
 
 	unsigned long currentTime = millis();
 	notClosedDoorTimer = currentTime;
