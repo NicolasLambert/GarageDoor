@@ -38,7 +38,7 @@ private:
 
 };
 
-#endif /* ABSTRACTMANAGER_H_ */
-
 template<typename T>
 T *AbstractManager<T>::_singleton = 0;
+
+#endif /* ABSTRACTMANAGER_H_ */
