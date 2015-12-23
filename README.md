@@ -32,7 +32,7 @@ TWITTER_TOKEN=BBBB
 ```
 
 You must replace AAAA by your login and password concatenated with a ':'.
-For exemple if your credential are login:foo, pwd:bar then you hace to convert this string : "toto:tata" in base 64.
+For exemple if your credential are login:foo, pwd:bar then you have to convert this string : "foo:bar" in base 64.
 You can found an online converter here : http://www.motobit.com/util/base64-decoder-encoder.asp
 
 You must replace BBBB by your Twitter Token.
